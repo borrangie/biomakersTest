@@ -3,6 +3,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import notes from './modules/notes';
+import results from './modules/results';
 import users from './modules/users';
 
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
   modules: {
     notes,
     users,
+    results,
   },
   plugins: [createPersistedState()]
 });
