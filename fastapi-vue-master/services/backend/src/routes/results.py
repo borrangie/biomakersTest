@@ -34,7 +34,7 @@ async def get_result(result_id: int) -> ResultOutSchema:
     except DoesNotExist:
         raise HTTPException(
             status_code=404,
-            detail="Note does not exist",
+            detail="Result does not exist",
         )
 
 

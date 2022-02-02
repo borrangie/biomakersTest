@@ -1,19 +1,29 @@
 <template>
   <div>
     <section>
-      <h1>Add new note</h1>
+      <h1>Add new result</h1>
       <hr/><br/>
 
       <form @submit.prevent="submit">
         <div class="mb-3">
-          <label for="title" class="form-label">Title:</label>
-          <input type="text" name="title" v-model="form.title" class="form-control" />
+          <label for="patient" class="form-label">Patient's name:</label>
+          <input type="text" name="patient" v-model="form.patient" class="form-control" />
+        </div>
+        <div id="v-model-select" class="demo">
+          <label for="result" class="form-label">Result: </label>
+          <select v-model="form.result" name="result">
+            <option disabled value="">Select one</option>
+            <option>Positive</option>
+            <option>Negative</option>
+            <option>Insufficient</option>
+            <option>Cancelled</option>
+          </select>
         </div>
         <div class="mb-3">
-          <label for="content" class="form-label">Content:</label>
+          <label for="gen" class="form-label">Gen type:</label>
           <textarea
-            name="content"
-            v-model="form.content"
+            name="gen"
+            v-model="form.gen"
             class="form-control"
           ></textarea>
         </div>
@@ -24,17 +34,19 @@
     <br/><br/>
 
     <section>
-      <h1>Notes</h1>
+      <h1>Results</h1>
       <hr/><br/>
 
-      <div v-if="notes.length">
-        <div v-for="note in notes" :key="note.id" class="notes">
+      <div v-if="results.length">
+        <div v-for="result in results" :key="result.id" class="results">
           <div class="card" style="width: 18rem;">
             <div class="card-body">
               <ul>
-                <li><strong>Note Title:</strong> {{ note.title }}</li>
-                <li><strong>Author:</strong> {{ note.author.username }}</li>
-                <li><router-link :to="{name: 'Note', params:{id: note.id}}">View</router-link></li>
+                <li><strong>Patient:</strong> {{ result.patient }}</li>
+                <li><strong>Doctor:</strong> {{ result.author.username }}</li>
+                <li><strong>Result:</strong> {{ result.result }}</li>
+                <li><strong>Gen:</strong> {{ result.gen }}</li>
+                <li><router-link :to="{name: 'Result', params:{id: result.id}}">View more</router-link></li>
               </ul>
             </div>
           </div>
@@ -56,21 +68,22 @@ export default {
   data() {
     return {
       form: {
-        title: '',
-        content: '',
+        patient: '',
+        result: '',
+        gen:'',
       },
     };
   },
   created: function() {
-    return this.$store.dispatch('getNotes');
+    return this.$store.dispatch('getResults');
   },
   computed: {
-    ...mapGetters({ notes: 'stateNotes'}),
+    ...mapGetters({ results: 'stateNotes'}),
   },
   methods: {
-    ...mapActions(['createNote']),
+    ...mapActions(['createResult']),
     async submit() {
-      await this.createNote(this.form);
+      await this.createResult(this.form);
     },
   },
 };

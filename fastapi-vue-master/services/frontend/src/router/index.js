@@ -4,10 +4,10 @@ import VueRouter from 'vue-router';
 import store from '@/store';
 
 import Dashboard from '@/views/Dashboard';
-import EditNote from '@/views/EditNote';
+import EditResult from '@/views/EditResult';
 import Home from '@/views/Home.vue';
 import Login from '@/views/Login';
-import Note from '@/views/Note';
+import Result from '@/views/Result';
 import Profile from '@/views/Profile';
 import Register from '@/views/Register';
 
@@ -42,16 +42,16 @@ const routes = [
     meta: {requiresAuth: true},
   },
   {
-    path: '/note/:id',
-    name: 'Note',
-    component: Note,
+    path: '/result/:id',
+    name: 'Result',
+    component: Result,
     meta: {requiresAuth: true},
     props: true,
   },
   {
-    path: '/editnote/:id',
-    name: 'EditNote',
-    component: EditNote,
+    path: '/editresult/:id',
+    name: 'EditResult',
+    component: EditResult,
     meta: {requiresAuth: true},
     props: true,
   }

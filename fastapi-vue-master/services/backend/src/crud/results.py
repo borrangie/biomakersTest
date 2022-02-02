@@ -10,8 +10,8 @@ async def get_results():
     return await ResultOutSchema.from_queryset(Results.all())
 
 
-async def get_result(note_id) -> ResultOutSchema:
-    return await ResultOutSchema.from_queryset_single(Results.get(id=note_id))
+async def get_result(result_id) -> ResultOutSchema:
+    return await ResultOutSchema.from_queryset_single(Results.get(id=result_id))
 
 
 async def create_result(result, current_user) -> ResultOutSchema:
@@ -23,7 +23,7 @@ async def create_result(result, current_user) -> ResultOutSchema:
 
 async def update_result(result_id, result, current_user) -> ResultOutSchema:
     try:
-        db_result = await ResultOutSchema.from_queryset_single(Results.get(id=note_id))
+        db_result = await ResultOutSchema.from_queryset_single(Results.get(id=result_id))
     except DoesNotExist:
         raise HTTPException(status_code=404, detail=f"Result {result_id} not found")
 

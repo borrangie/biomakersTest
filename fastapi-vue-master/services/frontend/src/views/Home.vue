@@ -1,9 +1,31 @@
 <template>
   <section>
-    <p>This site is built with FastAPI and Vue.</p>
-
     <div v-if="isLoggedIn" id="logout">
-      <p id="logout">Click <a href="/dashboard">here</a> to view all notes.</p>
+      <h1>Stats</h1>
+      <hr/><br/>
+      <div class="card" style="width: 20rem;">
+        <div class="card-body">
+          <h3>All results:</h3>
+            <p><strong>Positive results:</strong> {{  }}</p>
+            <p>In total: {{  }}</p>
+        </div>
+      </div>
+      <div class="card" style="width: 20rem;">
+        <div class="card-body">
+          <h3>Results per gen type:</h3>
+          <p><strong>Positive results:</strong> {{  }}</p>
+          <p>In total: {{  }}</p>
+        </div>
+      </div>
+      <div class="card" style="width: 20rem;">
+        <div class="card-body">
+            <h3>My results:</h3>
+            <p><strong>My uploaded results:</strong> {{  }}</p>
+            <p>In total: {{  }}</p>
+        </div>
+      </div>
+      <p id="logout">Click <a href="/dashboard">here</a> to view or add results.</p>
+
     </div>
     <p v-else>
       <span><a href="/register">Register</a></span>

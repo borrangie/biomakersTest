@@ -24,11 +24,11 @@ class Notes(models.Model):
 class Results(models.Model):
     id = fields.IntField(pk=True)
     patient = fields.CharField(max_length=50, null=True)
-    author = fields.ForeignKeyField("models.Users", related_name="note")
+    author = fields.ForeignKeyField("models.Users", related_name="result")
     gen = fields.TextField()
     result = fields.TextField()
     created_at = fields.DatetimeField(auto_now_add=True)
     modified_at = fields.DatetimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.title}, {self.author_id} on {self.created_at}"
+        return f"{self.patient}, {self.author_id} on {self.created_at}"
